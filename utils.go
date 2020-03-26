@@ -6,8 +6,39 @@
 
 package utils
 
+import "strings"
+
+// String with utility methods
+type PowerString string
+
+func (p *PowerString) reverse() {
+	runes := []rune(*p)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	*p = PowerString(string(runes))
+}
+
+// Check if this string is a palindrome.
+func (p PowerString) isPalindrome() bool {
+	original := string(p)
+	p.reverse()
+	reversed := string(p)
+	return original == reversed
+}
+
+// Return the index of the substring in this string.
+func (p PowerString) index(substring PowerString) int {
+	return strings.Index(string(p), string(substring))
+}
+
+// Check if this string contains the given substring
+func (p PowerString) contains(substring PowerString) bool {
+	return strings.Contains(string(p), string(substring))
+}
+
 // Sums up all given values (float64).
-func FloatSum(xi ...float64) float64 {
+func Sum(xi ...float64) float64 {
 	total := 0.0
 
 	for _, v := range xi {
@@ -16,25 +47,15 @@ func FloatSum(xi ...float64) float64 {
 	return total
 }
 
-// Sums up all given values (int).
-func IntSum(xi ...int) int {
-	total := 0
-
-	for _, v := range xi {
-		total += v
-	}
-	return total
-}
-
-// Returns a slice of integers containing only the 
+// Returns a slice of integers containing only the
 // int values from the input slice for which the function
 // f yielded true.
-func IntFilter(f func(x int) bool, xi []int) []int {
+func Filter(f func(x float64) bool, xi []float64) []float64 {
 	if xi == nil || len(xi) == 0 {
 		return xi
 	}
 
-	var results []int
+	var results []float64
 	for _, e := range xi {
 		if f(e) {
 			results = append(results, e)
@@ -43,37 +64,29 @@ func IntFilter(f func(x int) bool, xi []int) []int {
 	return results
 }
 
-
 // Maps a function to each element in a slice of int
-func IntMap(f func(x int) int, xi []int) []int {
+func Map(f func(x float64) float64, xi []float64) []float64 {
 	if xi == nil || len(xi) == 0 {
 		return xi
 	}
 
-	var results []int
+	var results []float64
 	for _, e := range xi {
 		results = append(results, f(e))
 	}
 	return results
 }
 
-// Compare if two slices are equal
-func EqIntSlices(a, b []int) bool {
-	if (a == nil) != (b == nil) {
-		return false
-	}
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
 // Returns 2 to the power of the given exponent.
 func PowerOfTwo(exponent int) int {
-	return  1 << exponent
+	if exponent < 0 {
+		return 0
+	}
+	return 1 << exponent
 }
+
+// go test -v to see all test results
+// go test -cover to get code coverage
+// go test -coverprofile c.out writes results to file c.out
+// go tool cover -html=c.out visualizes the results from c.out
+// godoc -http=:8080
