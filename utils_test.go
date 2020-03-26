@@ -155,6 +155,7 @@ func Test_gcd(t *testing.T) {
 	}{
 		{"gcd1", args{20, 5}, 5},
 		{"gcd2", args{21, 28}, 7},
+		{"gcd_by_zero", args{0, 1}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -165,7 +166,7 @@ func Test_gcd(t *testing.T) {
 	}
 }
 
-func Test_lcm(t *testing.T) {
+func Test_LowestCommonMultiple(t *testing.T) {
 	type args struct {
 		a int
 		b int
@@ -175,12 +176,13 @@ func Test_lcm(t *testing.T) {
 		args args
 		want int
 	}{
-		{"lcm1", args{20, 5}, 20},
-		{"lcm2", args{3, -7}, 21},
+		{"LowestCommonMultiple1", args{20, 5}, 20},
+		{"LowestCommonMultiple2", args{3, -7}, 21},
+		{"LowestCommonMultiple_of_zero", args{0, 1}, 0},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := LargestCommonMultiple(tt.args.a, tt.args.b); got != tt.want {
+			if got := LowestCommonMultiple(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("lcm() = %v, want %v", got, tt.want)
 			}
 		})

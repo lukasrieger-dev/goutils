@@ -90,27 +90,32 @@ func PowerOfTwo(exponent int) int {
 // Computes the greatest common divisor of a and b
 func GreatestCommonDivisor(a, b int) int {
 	var gcdnum int
-	/* Use of And operator in For Loop */
 	for i := 1; i <= a && i <= b; i++ {
 		if a%i == 0 && b%i == 0 {
 			gcdnum = i
 		}
 	}
+	if gcdnum == 0 {
+		gcdnum = 1
+	}
 	return gcdnum
 }
 
-// Computes the largest common multiple of a and b
-func LargestCommonMultiple(a, b int) int {
+// Computes the lowest common multiple of a and b
+func LowestCommonMultiple(a, b int) int {
 	var lcmnum int = 1
+
+	if a == 0 || b == 0 {
+		return 0
+	}
+
 	if a > b {
 		lcmnum = a
 	} else {
 		lcmnum = b
 	}
-	/* Use of For Loop as a While Loop*/
 	for {
-		if lcmnum%a == 0 && lcmnum%b == 0 { // And operator
-			/*  Print Statement with multiple variables   */
+		if lcmnum%a == 0 && lcmnum%b == 0 {
 			break
 		}
 		lcmnum++
