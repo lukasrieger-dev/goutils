@@ -23,6 +23,8 @@ func TestPowerString_isPalindrome(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			// when testing with -v log output will be shown
+			t.Logf("Running isPalindrome(%v)", tt.p)
 			if got := tt.p.isPalindrome(); got != tt.want {
 				t.Errorf("PowerString.isPalindrome() = %v, want %v", got, tt.want)
 			}

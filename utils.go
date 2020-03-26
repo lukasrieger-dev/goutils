@@ -124,12 +124,19 @@ func LowestCommonMultiple(a, b int) int {
 }
 
 // go test -v to see all test results
+
 // go test -bench . to run benchmark tests
+
+// go test ./... run all tests in subpackages
+
 // go test -cover to get code coverage
 // go test -coverprofile c.out writes results to file c.out
-// go tool cover -html=c.out visualizes the results from c.out
+// go tool cover -html=c.out/-func=cover.out visualizes the results from c.out
+
 // godoc -http=:8080
-// go test ./... run all tests in subpackages
+
+// install package go get -u "github.com/.../..."
+
 // if testing.Short() { t.Skip() }  -> go test -v -short
 // Custom flags:
 // func init() {
