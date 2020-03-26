@@ -11,6 +11,44 @@ import (
 	"testing"
 )
 
+func TestPowerString_isPalindrome(t *testing.T) {
+	tests := []struct {
+		name string
+		p    PowerString
+		want bool
+	}{
+		{"palindrome", "xouuox", true},
+		{"not_palindrome", "apple", false},
+		{"empty_string", "", true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.p.isPalindrome(); got != tt.want {
+				t.Errorf("PowerString.isPalindrome() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestPowerString_reverse(t *testing.T) {
+	tests := []struct {
+		name string
+		p    PowerString
+		want string
+	}{
+		{"reverse", "cow", "woc"},
+		{"empty_string", "", ""},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			tt.p.reverse()
+			if string(tt.p) != tt.want {
+				t.Errorf("PowerString.isPalindrome() = %v, want %v", tt.p, tt.want)
+			}
+		})
+	}
+}
+
 func TestPowerOfTwo(t *testing.T) {
 	tests := []struct {
 		title  string
@@ -79,6 +117,27 @@ func TestFilter(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := Filter(tt.args.f, tt.args.xi); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Filter() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestSum(t *testing.T) {
+	type args struct {
+		xi []float64
+	}
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		{"sum", args{[]float64{3.0, -1.0, 5.0}}, 7.0},
+		{"empty", args{[]float64{}}, 0.0},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Sum(tt.args.xi...); got != tt.want {
+				t.Errorf("Sum() = %v, want %v", got, tt.want)
 			}
 		})
 	}
