@@ -124,7 +124,21 @@ func LowestCommonMultiple(a, b int) int {
 }
 
 // go test -v to see all test results
+// go test -bench . to run benchmark tests
 // go test -cover to get code coverage
 // go test -coverprofile c.out writes results to file c.out
 // go tool cover -html=c.out visualizes the results from c.out
 // godoc -http=:8080
+// go test ./... run all tests in subpackages
+// if testing.Short() { t.Skip() }  -> go test -v -short
+// Custom flags:
+// func init() {
+//	  flag.BoolVar(&myflag, "flagname", false, "run only special tests")
+//}
+// Usage
+// flag.Parse()
+// if flagname {}
+//
+// build tags
+// go test -v -tags="psql mysql"
+// in file: // +build <tagname>
