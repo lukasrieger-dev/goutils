@@ -142,3 +142,47 @@ func TestSum(t *testing.T) {
 		})
 	}
 }
+
+func Test_gcd(t *testing.T) {
+	type args struct {
+		temp1 int
+		temp2 int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{"gcd1", args{20, 5}, 5},
+		{"gcd2", args{21, 28}, 7},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := gcd(tt.args.temp1, tt.args.temp2); got != tt.want {
+				t.Errorf("gcd() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_lcm(t *testing.T) {
+	type args struct {
+		temp1 int
+		temp2 int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{"lcm1", args{20, 5}, 20},
+		{"lcm2", args{3, -7}, 21},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := lcm(tt.args.temp1, tt.args.temp2); got != tt.want {
+				t.Errorf("lcm() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

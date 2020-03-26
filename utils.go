@@ -6,7 +6,9 @@
 
 package utils
 
-import "strings"
+import (
+	"strings"
+)
 
 // String with utility methods
 type PowerString string
@@ -83,6 +85,35 @@ func PowerOfTwo(exponent int) int {
 		return 0
 	}
 	return 1 << exponent
+}
+
+func gcd(temp1, temp2 int) int {
+	var gcdnum int
+	/* Use of And operator in For Loop */
+	for i := 1; i <= temp1 && i <= temp2; i++ {
+		if temp1%i == 0 && temp2%i == 0 {
+			gcdnum = i
+		}
+	}
+	return gcdnum
+}
+
+func lcm(temp1, temp2 int) int {
+	var lcmnum int = 1
+	if temp1 > temp2 {
+		lcmnum = temp1
+	} else {
+		lcmnum = temp2
+	}
+	/* Use of For Loop as a While Loop*/
+	for {
+		if lcmnum%temp1 == 0 && lcmnum%temp2 == 0 { // And operator
+			/*  Print Statement with multiple variables   */
+			break
+		}
+		lcmnum++
+	}
+	return lcmnum
 }
 
 // go test -v to see all test results
