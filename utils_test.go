@@ -145,8 +145,8 @@ func TestSum(t *testing.T) {
 
 func Test_gcd(t *testing.T) {
 	type args struct {
-		temp1 int
-		temp2 int
+		a int
+		b int
 	}
 	tests := []struct {
 		name string
@@ -158,7 +158,7 @@ func Test_gcd(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := gcd(tt.args.temp1, tt.args.temp2); got != tt.want {
+			if got := GreatestCommonDivisor(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("gcd() = %v, want %v", got, tt.want)
 			}
 		})
@@ -167,8 +167,8 @@ func Test_gcd(t *testing.T) {
 
 func Test_lcm(t *testing.T) {
 	type args struct {
-		temp1 int
-		temp2 int
+		a int
+		b int
 	}
 	tests := []struct {
 		name string
@@ -180,7 +180,7 @@ func Test_lcm(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := lcm(tt.args.temp1, tt.args.temp2); got != tt.want {
+			if got := LargestCommonMultiple(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("lcm() = %v, want %v", got, tt.want)
 			}
 		})
